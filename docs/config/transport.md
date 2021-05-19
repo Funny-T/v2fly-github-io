@@ -63,15 +63,17 @@
     "httpSettings": {},
     "quicSettings": {},
     "dsSettings": {},
+    "grpcSettings": {},
     "sockopt": {
         "mark": 0,
         "tcpFastOpen": false,
-        "tproxy": "off"
+        "tproxy": "off",
+        "tcpKeepAliveInterval": 0
     }
 }
 ```
 
-> `network`: "tcp" | "kcp" | "ws" | "http" | "domainsocket" | "quic"
+> `network`: "tcp" | "kcp" | "ws" | "http" | "domainsocket" | "quic" | "grpc"
 
 数据流所使用的网络类型，默认值为 `"tcp"`
 
@@ -106,6 +108,10 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 > `dsSettings`: [DomainSocketObject](transport/domainsocket.md)
 
 当前连接的 Domain socket 配置，仅当此连接使用 Domain socket 时有效。配置内容与上面的全局配置相同。
+
+> `grpcSettings`: [grpcObject](transport/grpc.md)
+
+当前连接的 gRPC 配置，仅当此连接使用 gRPC 时有效。配置内容与上面的全局配置相同。
 
 > `sockopt`: [SockoptObject](#sockoptobject)
 
@@ -145,6 +151,14 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 > `certificates`: \[ [CertificateObject](#certificateobject) \]
 
 证书列表，其中每一项表示一个证书（建议 fullchain）。
+
+> `pinnedPeerCertificateChainSha256`: \[ string \]
+
+使用标准编码格式表示的远程服务器的证书链的SHA256散列值。在设置后，远程服务器的证书链的散列值必须为列表中的数值之一。(v4.38.0+)
+<!--
+此数值可以使用V2Ray自带的 v2ctl 工具的 certChainHash 工具根据服务器的证书链文件进行计算(按照管理，这个文件的名字一般叫 fullchain.pem )。如果没有中间证书（如自签发证书），证书链的散列值和证书本身的散列值相同。-->
+
+在连接因为此策略失败时，会展示此证书链散列。不建议使用这种方式获得证书链散列值，因为在这种情况下您没有机会验证此时服务器提供的证书是否为真实证书。
 
 ### CertificateObject
 
@@ -252,7 +266,8 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 {
     "mark": 0,
     "tcpFastOpen": false,
-    "tproxy": "off"
+    "tproxy": "off",
+    "tcpKeepAliveInterval": 0
 }
 ```
 
@@ -285,3 +300,9 @@ TLS 配置。TLS 由 Golang 提供，支持 TLS 1.3，不支持 DTLS。
 :::tip
 当 [Dokodemo-door](protocols/dokodemo.md) 中指定了 `followRedirect`，且 `sockopt.tproxy` 为空时，`sockopt.tproxy` 的值会被设为 `"redirect"`。
 :::
+
+> `tcpKeepAliveInterval`: number
+
+TCP 保持活跃的数据包的发送间隔，以秒为单位（仅适用于 Linux）。 (v4.39.0+)
+
+0 代表保持默认值。

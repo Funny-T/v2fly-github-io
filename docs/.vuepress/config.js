@@ -87,6 +87,7 @@ module.exports = {
                             collapsable: false,
                             children: [
                                 'overview',
+                                'env',
                                 'dns',
                                 'routing',
                                 'policy',
@@ -98,6 +99,8 @@ module.exports = {
                                 'reverse',
                                 'multiple_config',
                                 'fakedns',
+                                'browserforwarder',
+                                'observatory',
                             ],
                         },
                         {
@@ -110,10 +113,10 @@ module.exports = {
                                 'protocols/freedom',
                                 'protocols/http',
                                 'protocols/socks',
-                                'protocols/vless',
                                 'protocols/vmess',
                                 'protocols/shadowsocks',
                                 'protocols/trojan',
+                                'protocols/vless',
                                 'protocols/loopback',
                             ],
                         },

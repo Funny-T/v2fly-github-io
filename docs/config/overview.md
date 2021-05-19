@@ -18,7 +18,9 @@ V2Ray 的配置文件形式如下，客户端和服务器通用一种形式，�
     "transport": {},
     "stats": {},
     "reverse": {},
-    "fakedns": {}
+    "fakedns": [],
+    "browserForwarder": {},
+    "observatory": {}
 }
 ```
 
@@ -65,6 +67,15 @@ V2Ray 的配置文件形式如下，客户端和服务器通用一种形式，�
 > `fakedns`: [FakeDnsObject](fakedns.md)
 
 虚拟 DNS 服务器。
+
+
+> `browserForwarder`: [BrowserForwarderObject](browserforwarder.md)
+
+浏览器转发模块。
+
+> `observatory`: [ObservatoryObject](observatory.md)
+
+连接观测模块。
 
 ## LogObject
 

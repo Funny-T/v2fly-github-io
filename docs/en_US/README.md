@@ -4,7 +4,7 @@ heroImage: /v2ray.png
 heroText: Project V
 tagline: Help you build an exclusive basic communication network
 actionText: Quick start →
-actionLink: /guide/start.html
+actionLink: /en_US/guide/start.html
 features:
 - title: Multiple entrances and multiple exits
   details: A V2Ray process can concurrently support multiple inbound and outbound protocols, and each protocol can work independently.
@@ -27,7 +27,7 @@ We are a group of people who love freedom. We tend to remain anonymous and do no
 
 You can use GitHub, Telegram, Email [discuss with us](guide/help.md).
 
-## contribution
+## Contribution
 
 Welcome to contribute to the project! Even if you don't know how to write code, there are still many ways to help improve it. Here are some examples:
 
